@@ -28,7 +28,25 @@
                             </a>
                         </li>
                     </ul>
+                    <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
+                        <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    <img src="assets/images/profile/user-1.jpg" alt="" width="35"
+                                        height="35" class="rounded-circle">
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up"
+                                    aria-labelledby="drop2">
+                                    <div class="message-body">
 
+                                        <a href="{{ route('logout_process') }}"
+                                            class="btn btn-outline-primary mx-3 mt-2 d-block">Logout</a>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
                 </nav>
             </header>
             <div class="container-fluid">
@@ -37,6 +55,7 @@
             </div>
         </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="assets/libs/jquery/dist/jquery.min.js"></script>
     <script src="assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/sidebarmenu.js"></script>
@@ -47,6 +66,21 @@
     <script src="//cdn.datatables.net/2.0.7/js/dataTables.min.js"></script>
     <script>
         let table = new DataTable('#daftar_transaksi_table');
+
+        @foreach ($errors->all() as $error)
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "{{ $error }}",
+            });
+        @endforeach
+        @if (session()->has('success'))
+            Swal.fire({
+                icon: "success",
+                title: "Yeay..",
+                text: "{{ session('success') }}",
+            });
+        @endif
     </script>
 </body>
 
