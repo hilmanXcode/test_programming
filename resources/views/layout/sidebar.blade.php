@@ -39,7 +39,8 @@
                         </span>
                         <span class="hide-menu">Barang</span>
                     </a>
-                    <a class="sidebar-link" href="/asdasd" aria-expanded="false">
+                    <a class="sidebar-link {{ $page === 'customer' ? 'active' : '' }}"
+                        href="{{ route('customer.index') }}" aria-expanded="false">
                         <span>
                             <i class="ti ti-user"></i>
                         </span>

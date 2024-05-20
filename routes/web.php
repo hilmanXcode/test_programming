@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BarangController;
+use App\Http\Controllers\CustomerController;
+use SebastianBergmann\CodeCoverage\Report\Html\CustomCssFile;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,4 +39,12 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/barang/add', [BarangController::class, 'store'])->name('barang.store');
     Route::post('/barang/edit/{id}', [BarangController::class, 'update'])->name('barang.update');
     Route::delete('/barang/delete/{id}', [BarangController::class, 'delete'])->name('barang.delete');
+
+    //Customer Controller
+    Route::get('/customer', [CustomerController::class, 'index'])->name('customer.index');
+    Route::get('/customer/add', [CustomerController::class, 'insert'])->name('customer.add');
+    Route::get('/customer/edit/{id}', [CustomerController::class, 'edit'])->name('customer.edit');
+    Route::post('/customer/add', [CustomerController::class, 'store'])->name('customer.store');
+    Route::post('/customer/edit/{id}', [CustomerController::class, 'update'])->name('customer.update');
+    Route::delete('/customer/delete/{id}', [CustomerController::class, 'delete'])->name('customer.delete');
 });

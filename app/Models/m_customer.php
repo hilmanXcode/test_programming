@@ -9,4 +9,5 @@ class m_customer extends Model
 {
     use HasFactory;
     protected $table = 'm_customer';
+    protected $guarded = ['id'];
 }
