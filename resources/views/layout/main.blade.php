@@ -4,8 +4,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Test Programming</title>
-    <link rel="stylesheet" href="assets/css/styles.min.css" />
+    <title>GudangKu</title>
+    <link rel="stylesheet" href="{{ env('APP_URL') }}/assets/css/styles.min.css" />
     <link rel="stylesheet" href="//cdn.datatables.net/2.0.7/css/dataTables.dataTables.min.css">
 </head>
 
@@ -33,8 +33,8 @@
                             <li class="nav-item dropdown">
                                 <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2"
                                     data-bs-toggle="dropdown" aria-expanded="false">
-                                    <img src="assets/images/profile/user-1.jpg" alt="" width="35"
-                                        height="35" class="rounded-circle">
+                                    <img src="{{ env('APP_URL') }}/assets/images/profile/user-1.jpg" alt=""
+                                        width="35" height="35" class="rounded-circle">
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up"
                                     aria-labelledby="drop2">
@@ -56,13 +56,13 @@
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="assets/libs/jquery/dist/jquery.min.js"></script>
-    <script src="assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/sidebarmenu.js"></script>
-    <script src="assets/js/app.min.js"></script>
-    <script src="assets/libs/apexcharts/dist/apexcharts.min.js"></script>
-    <script src="assets/libs/simplebar/dist/simplebar.js"></script>
-    <script src="assets/js/dashboard.js"></script>
+    <script src="{{ env('APP_URL') }}/assets/libs/jquery/dist/jquery.min.js"></script>
+    <script src="{{ env('APP_URL') }}/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    {{-- <script src="assets/js/sidebarmenu.js"></script> --}}
+    <script src="{{ env('APP_URL') }}/assets/js/app.min.js"></script>
+    {{-- <script src="{{ env('APP_URL') }}/assets/libs/apexcharts/dist/apexcharts.min.js"></script> --}}
+    <script src="{{ env('APP_URL') }}/assets/libs/simplebar/dist/simplebar.js"></script>
+    {{-- <script src="{{ env('APP_URL') }}/assets/js/dashboard.js"></script> --}}
     <script src="//cdn.datatables.net/2.0.7/js/dataTables.min.js"></script>
     <script>
         let table = new DataTable('#daftar_transaksi_table');
@@ -81,6 +81,26 @@
                 text: "{{ session('success') }}",
             });
         @endif
+
+        $('.show_confirm').click(function(event) {
+            var form = $(this).closest("form");
+            var name = $(this).data("name");
+            event.preventDefault();
+            Swal.fire({
+                    title: "Are you sure?",
+                    text: "You won't be able to revert this!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, delete it!"
+                })
+                .then((result) => {
+                    if (result.isConfirmed) {
+                        form.submit();
+                    }
+                });
+        });
     </script>
 </body>
 
