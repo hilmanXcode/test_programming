@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\FormInputController;
 use SebastianBergmann\CodeCoverage\Report\Html\CustomCssFile;
 
 /*
@@ -47,4 +48,9 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/customer/add', [CustomerController::class, 'store'])->name('customer.store');
     Route::post('/customer/edit/{id}', [CustomerController::class, 'update'])->name('customer.update');
     Route::delete('/customer/delete/{id}', [CustomerController::class, 'delete'])->name('customer.delete');
+
+    //Forminput Controller
+    Route::get('/forminput', [FormInputController::class, 'index'])->name('forminput.index');
+    Route::get('/getdatacustomer', [FormInputController::class, 'getcustomer'])->name('forminput.getcustomer');
+    Route::get('/getdatabarang', [FormInputController::class, 'getbarang'])->name('forminput.getbarang');
 });

@@ -46,8 +46,16 @@
                         </span>
                         <span class="hide-menu">Customer</span>
                     </a>
+                    <a class="sidebar-link {{ $page === 'forminput' ? 'active' : '' }}"
+                        href="{{ route('forminput.index') }}" aria-expanded="false">
+                        <span>
+                            <i class="ti ti-pencil"></i>
+                        </span>
+                        <span class="hide-menu">Form Input</span>
+                    </a>
 
                 </li>
+
         </nav>
         <!-- End Sidebar navigation -->
     </div>

@@ -9,4 +9,5 @@ class t_sales extends Model
 {
     use HasFactory;
     protected $table = 't_sales';
+    protected $guarded = ['id'];
 }

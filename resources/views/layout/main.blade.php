@@ -65,7 +65,7 @@
     {{-- <script src="{{ env('APP_URL') }}/assets/js/dashboard.js"></script> --}}
     <script src="//cdn.datatables.net/2.0.7/js/dataTables.min.js"></script>
     <script>
-        let table = new DataTable('#daftar_transaksi_table');
+        let table = new DataTable('#datatable');
 
         @foreach ($errors->all() as $error)
             Swal.fire({
@@ -101,6 +101,37 @@
                     }
                 });
         });
+
+        const name = document.querySelector('#name');
+        const telp = document.querySelector('#telp');
+        const fetchCustomer = (value) => {
+            if (value !== '-1') {
+                fetch('/getdatacustomer?kode=' + value)
+                    .then(response => response.json())
+                    .then(data => {
+                        name.value = data.name,
+                            telp.value = data.telp
+                    });
+            }
+        }
+
+
+        const tablex = document.querySelector('#data_barang');
+
+        const tambah_barang = (() => {
+            let nomer = 0;
+            return (kode) => {
+                fetch(`/getdatabarang?kode=${kode}&no=${nomer += 1}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        tablex.innerHTML += data.data;
+                    });
+            }
+        })();
+
+        const hapus_barang = (kode) => {
+            document.querySelector(`#${kode}`).remove();
+        }
     </script>
 </body>
 

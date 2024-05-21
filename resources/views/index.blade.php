@@ -7,7 +7,7 @@
                 <div class="card-body p-4">
                     <h5 class="card-title fw-semibold mb-4">Daftar Transaksi</h5>
                     <div class="table-responsive">
-                        <table class="table table-bordered text-nowrap mb-0 align-middle" id="daftar_transaksi_table">
+                        <table class="table table-bordered text-nowrap mb-0 align-middle" id="datatable">
                             <thead class="text-dark fs-4">
                                 <tr>
                                     <th class="border-bottom-0">
