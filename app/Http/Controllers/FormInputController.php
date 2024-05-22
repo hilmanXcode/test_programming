@@ -97,6 +97,6 @@ class FormInputController extends Controller
     //         'total' => $request->total
     //     ]);
 
-        return "SUKSES";
+        return redirect()->intended('dashboard')->with('success', 'Berhasil menginput data');
     }
 }
