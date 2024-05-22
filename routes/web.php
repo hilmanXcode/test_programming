@@ -53,4 +53,5 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/forminput', [FormInputController::class, 'index'])->name('forminput.index');
     Route::get('/getdatacustomer', [FormInputController::class, 'getcustomer'])->name('forminput.getcustomer');
     Route::get('/getdatabarang', [FormInputController::class, 'getbarang'])->name('forminput.getbarang');
+    Route::post('/forminput', [FormInputController::class, 'store'])->name('forminput.store');
 });

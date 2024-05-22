@@ -20,6 +20,7 @@ return new class extends Migration
             $table->decimal('diskon');
             $table->decimal('ongkir');
             $table->decimal('total_bayar');
+            $table->timestamps();
         });
     }
 

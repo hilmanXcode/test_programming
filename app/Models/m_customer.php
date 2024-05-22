@@ -10,4 +10,9 @@ class m_customer extends Model
     use HasFactory;
     protected $table = 'm_customer';
     protected $guarded = ['id'];
+
+    public function sales()
+    {
+        return $this->hasMany(t_sales::class, 'cust_id', 'id');
+    }
 }

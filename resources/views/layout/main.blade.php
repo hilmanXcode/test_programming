@@ -116,7 +116,7 @@
         }
 
 
-        const tablex = document.querySelector('#data_barang');
+        // const tablex = document.querySelector('#data_barang');
 
         const tambah_barang = (() => {
             let nomer = 0;
@@ -124,13 +124,65 @@
                 fetch(`/getdatabarang?kode=${kode}&no=${nomer += 1}`)
                     .then(response => response.json())
                     .then(data => {
-                        tablex.innerHTML += data.data;
+                        // tablex.innerHTML += data.data;
+                        // tablex.insertAdjacentHTML('beforeend', data.data);
+                        $('#data_barang').append(data.data);
                     });
             }
         })();
 
+        const ubah_barang = (no) => {
+
+            const qty = document.querySelector(`#qty${no}`);
+            const persen = document.querySelector(`#persen${no}`).value;
+            const rupiahpersen = document.querySelector(`#rupiahpersen${no}`);
+            const harga_bandrol = document.querySelector(`#harga_bandrol${no}`).value;
+            const hargadiskon = document.querySelector(`#hargadiskon${no}`);
+            const total = document.querySelector(`#total${no}`);
+            const sub_total = document.querySelector('#sub_total_input');
+
+            rupiahpersen.value = (persen / 100) * harga_bandrol;
+            hargadiskon.value = harga_bandrol - rupiahpersen.value;
+            total.value = hargadiskon.value * qty.value;
+            // console.log(rupiahpersen.value);
+            if (sub_total.value !== '') {
+                sub_total.value = parseFloat(sub_total.value) + parseFloat(total.value);
+
+            } else {
+                sub_total.value += parseFloat(total.value);
+
+            }
+        }
+
+        
+
+
         const hapus_barang = (kode) => {
             document.querySelector(`#${kode}`).remove();
+        }
+
+        // const diskon = () => {
+        //     let sub_total = document.querySelector('#sub_total_input').value;
+        //     let diskon = document.querySelector('#diskon_input').value;
+
+        //     let finalvar = sub_total - diskon;
+
+        //     total_bayar.value = finalvar;
+        // }
+
+        const calculateAll = () => {
+            // let total_bayar = parseFloat(document.querySelector('#total_bayar').value);
+            // let sub_total = parseFloat(document.querySelector('#sub_total_input').value);
+            let total_bayar = document.querySelector('#total_bayar');
+            let sub_total = document.querySelector('#sub_total_input').value;
+            let diskon = document.querySelector('#diskon_input').value;
+            let ongkir = document.querySelector('#ongkir_input');
+
+            if(ongkir.value === '')
+                return false;
+
+            total_bayar.value = parseFloat(sub_total) - parseFloat(diskon) + parseFloat(ongkir.value);
+
         }
     </script>
 </body>

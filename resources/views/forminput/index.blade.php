@@ -1,28 +1,30 @@
 @extends('layout.main')
 
 @section('content')
+<form action="{{ route('forminput.store') }}" method="POST" id="form_input">
     <div class="row">
         <div class="card">
             <div class="card-body p-4">
                 <div class="col-lg-12 mb-5">
                     <h5 class="card-title fw-semibold">Transaksi</h5>
-
-                    <div class="my-3">
-                        <label for="no" class="form-label">No</label>
-                        <input type="text" class="form-control" id="no" name="no" value="{{ $kode_transaksi }}"
-                            disabled>
-                    </div>
-                    <div class="mb-3">
-                        <label for="tanggal" class="form-label">Tanggal</label>
-                        <input type="date" class="form-control" id="tanggal" name="tanggal">
-                    </div>
+                    
+                        @csrf
+                        <div class="my-3">
+                            <label for="no" class="form-label">No</label>
+                            <input type="text" class="form-control" id="no" value="{{ $kode_transaksi }}"
+                                name="kode_transaksi" readonly>
+                        </div>
+                        <div class="mb-3">
+                            <label for="tanggal" class="form-label">Tanggal</label>
+                            <input type="date" class="form-control" id="tanggal" name="tgl">
+                        </div>
                 </div>
 
                 <div class="col-lg-12">
                     <h5 class="card-title fw-semibold">Customer</h5>
                     <div class="my-3">
                         <label class="form-label">Kode</label>
-                        <select class="form-select" onchange="fetchCustomer(this.value)">
+                        <select class="form-select" onchange="fetchCustomer(this.value)" name="customer_code">
                             <option value="-1">Pilih Customer</option>
                             @foreach ($data_customer as $data)
                                 <option value="{{ $data->kode }}">{{ $data->kode }}</option>
@@ -31,11 +33,11 @@
                     </div>
                     <div class="mb-3">
                         <label for="name" class="form-label">Nama</label>
-                        <input type="text" class="form-control" id="name" name="name">
+                        <input type="text" class="form-control" id="name" name="name" readonly>
                     </div>
                     <div class="mb-3">
                         <label for="telp" class="form-label">Telp</label>
-                        <input type="text" class="form-control" id="telp" name="telp">
+                        <input type="text" class="form-control" id="telp" name="telp" readonly>
                     </div>
                 </div>
 
@@ -86,7 +88,7 @@
                                                             </p>
                                                         </td>
                                                         <td>
-                                                            <button class="btn btn-primary"
+                                                            <button class="btn btn-primary" type="button"
                                                                 onclick="tambah_barang('{{ $data->kode }}')">Tambahkan</button>
                                                         </td>
                                                     </tr>
@@ -103,7 +105,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="table-responsive">
+                    <div class="table-responsive mb-4">
                         <table class="table table-bordered text-nowrap mb-0 align-middle">
                             <thead class="text-dark fs-4">
                                 <tr>
@@ -118,7 +120,7 @@
                                 </tr>
                                 <tr>
                                     <th>
-                                        <button class="btn btn-primary mb-4" data-bs-toggle="modal"
+                                        <button class="btn btn-primary mb-4" type="button" data-bs-toggle="modal"
                                             data-bs-target="#tambah_barang">Tambah</button>
                                     </th>
                                     <th class="border-bottom-0">
@@ -170,9 +172,27 @@
                             <tr> --}}
 
                         </table>
+                        {{-- <input type="hidden" value="" name="testing"> --}}
+                    </div>
+                    <h5 class="fw-semibold fs-5 text-end">Sub Total <input type="number" readonly id="sub_total_input"
+                            name="sub_total" /></h5>
+                    <h5 class="fw-semibold fs-5 text-end">Diskon <input type="number" id="diskon_input" name="diskons" min="0" /></h5>
+                    <h5 class="fw-semibold fs-5 text-end">Ongkir <input type="number" id="ongkir_input" name="ongkirs" min="0"
+                             /></h5>
+                    <h5 class="fw-semibold fs-5 text-end">Total Bayar <input type="number" id="total_bayar"
+                            name="total_bayar" readonly />
+                    <br/>
+                    <br/>
+                    <button type="button" onclick="calculateAll()" class="btn btn-info">Calculate</button>
+                    </h5>
+                    <div class="d-flex justify-content-center gap-2">
+                        <button type="submit" class="btn btn-success">Simpan</button>
+                        <a href="{{ route('dashboard') }}" class="btn btn-primary">Batal</a>
                     </div>
                 </div>
+                
             </div>
         </div>
     </div>
+</form>
 @endsection

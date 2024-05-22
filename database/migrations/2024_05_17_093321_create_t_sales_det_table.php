@@ -12,6 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('t_sales_det', function (Blueprint $table) {
+            $table->id();
             $table->integer('sales_id');
             $table->integer('barang_id');
             $table->decimal('harga_bandrol');
@@ -20,6 +21,7 @@ return new class extends Migration
             $table->decimal('diskon_nilai');
             $table->decimal('harga_diskon');
             $table->decimal('total');
+            $table->timestamps();
         });
     }
 
