@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FormInputController;
 use SebastianBergmann\CodeCoverage\Report\Html\CustomCssFile;
 
@@ -27,11 +28,7 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('logout_process')
 // Dashboard Section
 Route::middleware(['auth'])->group(function () {
     //Dashboard
-    Route::get('/dashboard', function () {
-        return view('index', [
-            "page" => "dashboard"
-        ]);
-    })->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     //Barang Controller
     Route::get('/barang', [BarangController::class, 'index'])->name('barang.index');

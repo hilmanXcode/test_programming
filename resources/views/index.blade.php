@@ -41,67 +41,39 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach ($datas as $data)
+                                    
                                 <tr>
                                     <td class="border-bottom-0">
-                                        <h6 class="fw-semibold mb-0">1</h6>
+                                        <h6 class="fw-normal mb-0">{{ $loop->iteration }}</h6>
                                     </td>
                                     <td class="border-bottom-0">
-                                        <p class="mb-0 fw-normal">202405-0001</p>
+                                        <p class="mb-0 fw-normal">{{ $data->sales->kode }}</p>
                                     </td>
                                     <td class="border-bottom-0">
-                                        <p class="mb-0 fw-normal">19-Mei-2024</p>
+                                        <p class="mb-0 fw-normal">{{ date("d F Y", strtotime($data->sales->tgl)); }}</p>
                                     </td>
                                     <td class="border-bottom-0">
-                                        <h6 class="fw-semibold">Jamaludin</h6>
+                                        <h6 class="fw-normal">{{ $data->sales->customer->name }}</h6>
                                     </td>
                                     <td class="border-bottom-0">
-                                        <p class="mb-0 fw-normal">2</p>
+                                        <p class="mb-0 fw-normal">{{ $data->qty }}</p>
                                     </td>
                                     <td class="border-bottom-0">
-                                        <p class="mb-0 fw-normal">250,000.00</p>
+                                        <p class="mb-0 fw-normal">{{ number_format($data->harga_bandrol, 2) }}</p>
                                     </td>
                                     <td class="border-bottom-0">
-                                        <p class="mb-0 fw-normal">5,000.00</p>
+                                        <p class="mb-0 fw-normal">{{ number_format($data->diskon_nilai, 2) }}</p>
                                     </td>
                                     <td class="border-bottom-0">
-                                        <p class="mb-0 fw-normal">-</p>
+                                        <p class="mb-0 fw-normal">{{ number_format($data->sales->ongkir, 2) }}</p>
                                     </td>
                                     <td class="border-bottom-0">
-                                        <p class="mb-0 fw-normal">245,000.00</p>
+                                        <p class="mb-0 fw-normal">{{ number_format($data->total, 2) }}</p>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td class="border-bottom-0">
-                                        <h6 class="fw-semibold mb-0">2</h6>
-                                    </td>
-                                    <td class="border-bottom-0">
-                                        <p class="mb-0 fw-normal">202405-0002</p>
-                                    </td>
-                                    <td class="border-bottom-0">
-                                        <p class="mb-0 fw-normal">19-Mei-2024</p>
-                                    </td>
-                                    <td class="border-bottom-0">
-                                        <h6 class="fw-semibold">MamangSky</h6>
-                                    </td>
-                                    <td class="border-bottom-0">
-                                        <p class="mb-0 fw-normal">2</p>
-                                    </td>
-                                    <td class="border-bottom-0">
-                                        <p class="mb-0 fw-normal">250,000.00</p>
-                                    </td>
-                                    <td class="border-bottom-0">
-                                        <p class="mb-0 fw-normal">5,000.00</p>
-                                    </td>
-                                    <td class="border-bottom-0">
-                                        <p class="mb-0 fw-normal">-</p>
-                                    </td>
-                                    <td class="border-bottom-0">
-                                        <p class="mb-0 fw-normal">245,000.00</p>
-                                    </td>
-                                </tr>
-
-
-
+                                @endforeach
+                                
                             </tbody>
                             <tr>
                                 <th></th>
@@ -111,7 +83,7 @@
                                 <th class="text-center" colspan="4">
                                     <h6 class="fw-semibold">Grand Total</h6>
                                 </th>
-                                <th>490,000.00</th>
+                                <th>{{ number_format($grandtotals, 2) }}</th>
                             <tr>
 
                         </table>

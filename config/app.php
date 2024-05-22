@@ -3,7 +3,10 @@
 use Illuminate\Support\Facades\Facade;
 use Illuminate\Support\ServiceProvider;
 
+
 return [
+
+    
 
     /*
     |--------------------------------------------------------------------------
@@ -30,6 +33,8 @@ return [
     */
 
     'env' => env('APP_ENV', 'production'),
+
+    
 
     /*
     |--------------------------------------------------------------------------
@@ -184,5 +189,7 @@ return [
     'aliases' => Facade::defaultAliases()->merge([
         // 'Example' => App\Facades\Example::class,
     ])->toArray(),
+
+    
 
 ];

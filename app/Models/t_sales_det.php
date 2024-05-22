@@ -9,7 +9,7 @@ class t_sales_det extends Model
 {
     use HasFactory;
     protected $table = 't_sales_det';
-    protected $guarded = [];
+    protected $guarded = ['id'];
 
     public function sales()
     {
