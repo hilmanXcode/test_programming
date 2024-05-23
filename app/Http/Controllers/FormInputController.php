@@ -44,9 +44,24 @@ class FormInputController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-        // dd($request->diskon_nilai);
+        
         $customer =  m_customer::all()->where('kode', '=', $request->customer_code)->firstOrFail();
-        // $barang = m_barang::all()->where('kode', '=', $request->kode_barang)->firstOrFail();
+        
+        $request->validate([
+            "kode_transaksi" => "required",
+            "tgl" => "required",
+            "customer_code" => "required",
+            "sub_total" => "required",
+            "ongkirs" => "required",
+            "total_bayar" => "required",
+            "kode_barang" => "required",
+            "qty" => "required",
+            "diskon_pct" => "required",
+            "diskon_nilai" => "required",
+            "harga_diskon" => "required",
+            "total" => "required"
+        ]);
+
         $sales = t_sales::create([
             "kode" => $request->kode_transaksi,
             "tgl" => $request->tgl,
@@ -86,16 +101,7 @@ class FormInputController extends Controller
             ]);
         }
 
-    //    t_sales_det::create([
-    //         'sales_id' => $sales->id,
-    //         'barang_id' => $barang->id,
-    //         'harga_bandrol' => $barang->harga,
-    //         'qty' => $request->qty,
-    //         'diskon_pct' => $request->diskon_pct,
-    //         'diskon_nilai' => $request->diskon_nilai,
-    //         'harga_diskon' => $request->harga_diskon,
-    //         'total' => $request->total
-    //     ]);
+
 
         return redirect()->intended('dashboard')->with('success', 'Berhasil menginput data');
     }
