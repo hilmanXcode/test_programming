@@ -44,9 +44,6 @@ class FormInputController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-        
-        $customer =  m_customer::all()->where('kode', '=', $request->customer_code)->firstOrFail();
-        
         $request->validate([
             "kode_transaksi" => "required",
             "tgl" => "required",
@@ -61,6 +58,9 @@ class FormInputController extends Controller
             "harga_diskon" => "required",
             "total" => "required"
         ]);
+        
+        $customer =  m_customer::all()->where('kode', '=', $request->customer_code)->firstOrFail();
+        
 
         $sales = t_sales::create([
             "kode" => $request->kode_transaksi,
