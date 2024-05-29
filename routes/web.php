@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BarangController;
@@ -52,3 +53,5 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/getdatabarang', [FormInputController::class, 'getbarang'])->name('forminput.getbarang');
     Route::post('/forminput', [FormInputController::class, 'store'])->name('forminput.store');
 });
+
+URL::forceScheme('https');
